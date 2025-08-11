@@ -1,0 +1,55 @@
+Question - 1
+Springboot: Playlist Management APIs
+
+
+Implement a simple REST API to manage a collection of music playlist data.
+
+Each PlayList is a JSON entry with the following keys: id: the unique ID of the 
+event (Long).
+name: name of the play list (String).
+tracksCount: initial number of tracks in the play list (Integer).
+
+Here is an example of a PlayList JSON object:
+
+
+An implementation of the PlayList model is provided. Implement a REST service that 
+exposes the v1/playlists endpoints, which allows for managing the collection of PlayList records in the following way:
+
+POST request to /v1/playlists:
+Create a new playlist data record.
+The response code is 201, and the response body is the created record, including its unique id.
+
+GET request to /v1/playlists: The response code is 200.
+The response body is a list of matching records, ordered by their ids in increasing order.
+
+GET request to /v1/playlists/{playListId}:
+Return a record with the given id and status code 200.
+If there is no record with the given id, the response code is null.
+
+DELETE request to /v1/playlists/{playListId}:
+Delete the record with the given id and return status code 204.
+
+Complete the project so that it passes all the test cases when running the provided unit tests. The project, by default, supports the use of the H2 database.
+
+
+
+
+
+Request body:
+
+The response code is 201, and when converted to JSON, the response body is:
+
+ 
+ 
+This adds a new object to the collection with the given properties and id 1.
+
+request to /v1/playlists
+The response code is 200, and when converted to JSON, the response body (assuming that the objects are all in the collection) is as follows:
+
+
+request to /v1/playlists/1
+The response code is 200, and when converted to JSON, the response body is as follows:
+
+
+DELETE request to /v1/playlists/1
+Assuming that the object with id 1 exists, the response code is 204, and the response body is empty.
