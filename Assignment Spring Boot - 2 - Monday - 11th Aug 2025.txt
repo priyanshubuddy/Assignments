@@ -1,0 +1,58 @@
+Question - 2
+Springboot: Track Information APIs
+
+
+Develop a REST API that shares details about music tracks for a music streaming platform. This API can receive, show, and query data like the track title, album, description, and play count. The work is judged based on how accurately and efficiently the application handles and processes this data.
+
+Music track data is represented as a JSON object, each describing various properties of a music track. The following properties are included: id: The unique integer ID of the object (Long).
+title: The title of the track (String).
+albumName: The corresponding album name of the track (String). releaseDate: The release date of the track, formatted as YYYY-MM-DD (Date).
+playCount: An integer value denoting how many times a user has played this track (Integer).
+
+Example of a music track data JSON object:
+ 
+
+
+
+
+
+
+
+The REST service must expose the endpoint /music/platform/v1/tracks, enabling the management of music track records as follows:
+
+POST request to /music/platform/v1/tracks: Creates a new music track record.
+It expects a valid music track data object as its body payload, excluding the id property.
+The service assigns a unique long id to the added object.
+The response includes the created record with its unique id, and the response code is 201.
+
+GET request to /music/platform/v1/tracks:
+Responds with a list of all music track records and a response code of 200.
+
+DELETE request to /music/platform/v1/tracks/{trackId}:
+Deletes the record with the specified track id if it exists in the database.
+
+GET request to /music/platform/v1/tracks/sorted: Provides a list of music track records sorted by title. The response code is 200.
+The system defaults to sorting by title in ascending order.
+
+Ensure the project meets all test case criteria when running the provided rspec tests. It uses the H2 database by default. Start by implementing the POST request to music/platform/v1/tracks, as testing other methods requires the POST functionality to work correctly.
+
+Request body:
+
+The response code is 201, and when converted to JSON, the response body is:
+
+This adds a new object to the collection with the given properties and id 1.
+
+request to /music/platform/v1/tracks
+The response code is 200, and when converted to JSON, the response body, assuming these objects are in the collection, is as follows:
+
+ 
+ 
+
+DELETE request to /music/platform/v1/tracks/1
+Assuming that the object with id 1 exists, the response code is 204, and the response body is empty.
+
+request to /music/platform/v1/tracks/sorted
+The response code is 200, and when converted to JSON, the response body, the returned collection sorted by its title ascending order, is as follows:
+
+
+
