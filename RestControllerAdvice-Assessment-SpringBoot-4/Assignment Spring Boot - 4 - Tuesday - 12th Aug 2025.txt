@@ -1,0 +1,73 @@
+Question - 4
+Spring Boot: Rest Controller Advice Setup
+
+
+The @ControllerAdvice annotation in Spring Boot is used as an interceptor to handle exceptions thrown 
+from the controller's @RequestMapping methods. It acts as a global exception-handling component for 
+the entire application. This question is about setting up one such controller advice component using 
+the @ControllerAdvice and @ExceptionHandler annotations.
+
+The definitions and detailed requirements are listed as follows.
+
+Given a rest controller class FizzBuzzController.java, there is a GET API endpoint to be modified, 
+which can throw three types of runtime exceptions:
+
+FizzException
+BuzzException
+FizzBuzzException
+
+Below is the endpoint for the API with a single path parameter:
+
+GET /controller_advice/{code}
+Exceptions are to be thrown based on the value of the path param {code} passed to the REST API. 
+Here is a series of requests and their corresponding expected responses:
+
+GET request to /controller_advice/fizz: Should trigger the FizzException → Should return the 
+response code 500 and the GlobalError as the response body.
+
+GET request to /controller_advice/buzz: Should trigger the BuzzException → Should return the response 
+code 400 and the GlobalError as the response body.
+
+GET request to /controller_advice/fizzbuzz: Should trigger the FizzBuzzException → Should return the 
+response code 507 and the GlobalError as the response body.
+
+GET request to /controller_advice/success: Should not trigger any exceptions → Should return the 
+response code 200 and the FizzBuzzResponse as the response body.
+
+Complete the project so that it passes all the test cases when running the provided unit tests. 
+To do so, implement a controller advice global exception handler FizzBuzzExceptionHandler, 
+intercept the runtime exceptions thrown from the API endpoint, and return a response entity 
+wrapped in the GlobalError class.
+
+The runtime exceptions and error response classes are already predefined in the project. Complete 
+the implementation controller and controller advice classes.
+
+Example requests and responses
+
+GET request to /controller_advice/fizz → Response code 500
+
+{
+  "message": "Fizz Exception has been thrown",
+  "errorReason": "Internal Server Error"
+}
+
+GET request to /controller_advice/buzz → Response code 400
+
+{
+  "message": "Buzz Exception has been thrown",
+  "errorReason": "Bad Request"
+}
+
+GET request to /controller_advice/fizzbuzz → Response code 507
+
+{
+  "message": "FizzBuzz Exception has been thrown",
+  "errorReason": "Insufficient Storage"
+}
+
+GET request to /controller_advice/success → Response code 200
+
+{
+  "message": "Successfully completed fizzbuzz test",
+  "statusCode": "200"
+}
